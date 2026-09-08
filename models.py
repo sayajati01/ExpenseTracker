@@ -8,11 +8,10 @@ class Expense:
         self.amount = amount
         self.date = date
 
-    def update_expense(self, description="", category="Other", amount=0, date=datetime.now()):
-        self.description = description
+    def update_expense(self, description="", category="Other", amount=0):
         self.category = category
         self.amount = amount
-        self.date = date
+        print("Expense has been updated.\n")
 
     def display_expense(self):
         print(
@@ -35,8 +34,9 @@ class ExpenseTrackerSystem :
             print("No Data Found\n")
         for expense in self.expenses.values():
             print(
-                f"{expense.expense_id:<7}{expense.description:<20}{expense.category:<15}Rp {expense.amount:,<8}{expense.date:<10}"
+                f"{expense.expense_id:<7}|{expense.description:<20}|{expense.category:<15}|Rp {expense.amount:<8,}|{expense.date}|"
             )
+        print()
 
     def true_if_exists(self, expense_id):
         if expense_id in self.expenses:
@@ -45,3 +45,7 @@ class ExpenseTrackerSystem :
 
     def get_expense(self, expense_id):
         return self.expenses[expense_id]
+
+    def del_expense(self, expense):
+        print("Expense has been deleted\n")
+        del self.expenses[expense.expense_id]
