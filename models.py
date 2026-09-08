@@ -35,6 +35,13 @@ class ExpenseTrackerSystem :
             print("No Data Found\n")
         for expense in self.expenses.values():
             print(
-                f"{self.expense.expense_id:<7}{expense.description:<20}{expense.category:<15}{expense.amount:,<8}{expense.date:<10}"
+                f"{expense.expense_id:<7}{expense.description:<20}{expense.category:<15}Rp {expense.amount:,<8}{expense.date:<10}"
             )
-        
+
+    def true_if_exists(self, expense_id):
+        if expense_id in self.expenses:
+            return True
+        return False
+
+    def get_expense(self, expense_id):
+        return self.expenses[expense_id]
