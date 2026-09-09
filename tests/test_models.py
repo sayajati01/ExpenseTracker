@@ -11,12 +11,14 @@ class TestModels(unittest.TestCase):
     def test_create_expense_no_false_input(self):
         date = datetime.now().replace(microsecond=0)
         expense = Expense("E122", "Lunch", "Food", 18000, date)
+        expense_2 = Expense("E122", "Lunch", "Food", 18000, date)
 
         self.assertEqual(expense.expense_id, "E122")
         self.assertEqual(expense.description, "Lunch")
         self.assertEqual(expense.category, "Food")
         self.assertEqual(expense.amount, 18000)
         self.assertEqual(expense.date, date)
+        self.assertEqual(expense, expense_2)
 
     def test_update_one_expense_no_false_input(self):
         date = datetime.now().replace(microsecond=0)
@@ -24,12 +26,12 @@ class TestModels(unittest.TestCase):
 
         expense.update_expense(
             description = "Dinner",
-            category = "Romantic",
+            category = "Family",
             amount = 1000000
         )
 
         self.assertEqual(expense.description, "Dinner")
-        self.assertEqual(expense.category, "Romantic")
+        self.assertEqual(expense.category, "Family")
         self.assertEqual(expense.amount, 1000000)
         self.assertEqual(expense.date, date)
 

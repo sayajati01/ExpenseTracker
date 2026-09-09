@@ -1,4 +1,5 @@
 from datetime import datetime
+from models import Categories
 
 def validate_id() -> str:
     while True:
@@ -16,18 +17,11 @@ def validate_description() -> str:
         print("INVALID CATEGORY")
 
 def validate_category() -> str:
-    categories = [
-            "Food",
-            "Drink",
-            "Other"
-            ]
-
-    for index, category in enumerate(categories, start=1):
-        print(f"{index}. {category}")
-
+    Categories.display_categories()
+    
     while True:
         category = input("Type one of above category (or type a new one) : ").title().strip()
-        if category in categories or (len(category)<=15 and category != "") :
+        if category in Categories :
             return category
         print("INVALID CATEGORY")
 

@@ -37,7 +37,7 @@ class TestServices(unittest.TestCase):
         with patch("builtins.input", side_effect=[
             "122",
             "Dinner",
-            "Side",
+            "Pets",
             "9000",
             "n"
         ]):
@@ -50,7 +50,7 @@ class TestServices(unittest.TestCase):
         with patch("builtins.input", side_effect=[
             "122",
             "Dinner",
-            "Side",
+            "Pets",
             "9000",
             "y"
         ]):
@@ -59,7 +59,7 @@ class TestServices(unittest.TestCase):
         expense = self.expense_tracker.get_expense("E122")
 
         self.assertEqual(expense.description, "Dinner")
-        self.assertEqual(expense.category, "Side")
+        self.assertEqual(expense.category, "Pets")
         self.assertEqual(expense.amount, 9000)
 
     def test_find_expense_with_action_None(self):
@@ -88,7 +88,7 @@ class TestServices(unittest.TestCase):
         with patch("builtins.input",side_effect=[
             "122",
             "Dinner",
-            "Side",
+            "Pets",
             9000
             ]):
             with patch("services.update_expense") as mock_update:
@@ -98,12 +98,12 @@ class TestServices(unittest.TestCase):
         with patch("builtins.input", side_effect=[
             "122",
             "Dinner",
-            "Side",
+            "Pets",
             9000
         ]):
             find_expense(self.expense_tracker, "Update")
             self.assertEqual(self.expense.description,"Dinner")
-            self.assertEqual(self.expense.category,"Side")
+            self.assertEqual(self.expense.category,"Pets")
             self.assertEqual(self.expense.amount,9000)
 
     def test_find_expense_with_action_delete(self):

@@ -1,12 +1,35 @@
 from datetime import datetime, timedelta
+from dataclasses import dataclass
+from enum import Enum
 
+class Categories(Enum):
+    FOOD = "Food"
+    DRINK = "Drink"
+    TRANSPORTATION = "Transportation"
+    ELECTRONICS = "Electronics"
+    HOUSING = "Housing"
+    UTILITIES = "Utilities"
+    SHOPPING = "Shopping"
+    ENTERTAINMENT = "Entertainment"
+    HEALTH = "Health"
+    EDUCATION = "Education"
+    PERSONAL_CARE = "Personal Care"
+    TRAVEL = "Travel"
+    FAMILY = "Family"
+    PETS = "Pets"
+    OTHER = "Other"
+
+    def display_categories():
+        for index,category_item in enumerate(Categories,start=1) :
+            print(f"{index}. {category_item.value}")
+
+@dataclass
 class Expense:
-    def __init__(self, expense_id :str, description:str, category:str, amount:int, date:datetime) -> None:
-        self.expense_id = expense_id
-        self.description = description
-        self.category = category
-        self.amount = amount
-        self.date = date
+    expense_id: str
+    description: str
+    category: str
+    amount: int
+    date: datetime
 
     def update_expense(self, description:str=None, category:str=None, amount:int=None) -> None:
         if description is not None:
