@@ -1,6 +1,6 @@
 from datetime import datetime
 
-def validate_id():
+def validate_id() -> str:
     while True:
         id_digit = input("ID (3 digit):").lower().strip()
         if id_digit.isdigit() and len(id_digit)==3:
@@ -8,14 +8,14 @@ def validate_id():
             return expense_id
         print("INVALID ID)")
 
-def validate_description():
+def validate_description() -> str:
     while True:
         description = input("Desc : ").strip()
         if description != "" and len(description)<=20 and not description.isdigit():
             return description
         print("INVALID CATEGORY")
 
-def validate_category():
+def validate_category() -> str:
     categories = [
             "Food",
             "Drink",
@@ -26,14 +26,12 @@ def validate_category():
         print(f"{index}. {category}")
 
     while True:
-        category = input("Choose category (or type a new one) : ").title().strip()
-        if category in categories :
-            return category
-        elif len(category)<=15 and category != "" :
+        category = input("Type one of above category (or type a new one) : ").title().strip()
+        if category in categories or (len(category)<=15 and category != "") :
             return category
         print("INVALID CATEGORY")
 
-def validate_amount():
+def validate_amount() -> int:
     while True :
         try:
             amount = int(input("Amount : "))
@@ -43,5 +41,5 @@ def validate_amount():
         except ValueError:
             print("INVALID AMOUNT")
 
-def validate_date():
+def validate_date() -> datetime:
     return datetime.now().replace(microsecond=0)

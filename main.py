@@ -11,18 +11,12 @@ def save_to_json(expense_tracker):
     expense_data = {}
 
     for expense in expense_tracker.expenses.values():
-        expense_id = expense.expense_id
-        expense_description = expense.description
-        expense_category = expense.category
-        expense_amount = expense.amount
-        expense_date = str(expense.date)
-
-        expense_data[expense_id] = {
-            "Expense ID" : expense_id,
-            "Description" : expense_description,
-            "Category" : expense_category,
-            "Amount" : expense_amount,
-            "Date" : expense_date
+        expense_data[expense.expense_id] = {
+            "Expense ID" : expense.expense_id,
+            "Description" : expense.description,
+            "Category" : expense.category,
+            "Amount" : expense.amount,
+            "Date" : str(expense.date)
         }
     save_data(expense_data)
 
@@ -33,18 +27,12 @@ def load_from_json():
         return expense_tracker_system
 
     for expense in expense_tracker_raw.values():
-        expense_id = expense["Expense ID"]
-        expense_description = expense["Description"]
-        expense_category= expense["Category"]
-        expense_amount = expense["Amount"]
-        expense_date = datetime.strptime(expense["Date"], "%Y-%m-%d %H:%M:%S")
-
         object_expense = Expense(
-            expense_id,
-            expense_description,
-            expense_category,
-            expense_amount,
-            expense_date
+            expense["Expense ID"],
+            expense["Description"],
+            expense["Category"],
+            expense["Amount"],
+            datetime.strptime(expense["Date"], "%Y-%m-%d %H:%M:%S")
             )
 
         expense_tracker_system.add_one_expense(object_expense)
