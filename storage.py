@@ -3,11 +3,11 @@ from pathlib import Path
 
 DATA_FILE = Path(__file__).parent / "expenses.json"
 
-def save_data(expense_data):
+def save_data(expense_data:dict) -> None:
     with open(DATA_FILE, "w") as file:
         json.dump(expense_data, file, indent=4)
 
-def load_data():
+def load_data() -> dict:
     try:
         with open(DATA_FILE, "r") as file:
             return json.load(file)

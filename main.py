@@ -4,7 +4,7 @@ from models import ExpenseTrackerSystem,Expense
 from storage import save_data, load_data
 from datetime import datetime
 
-def save_to_json(expense_tracker):
+def save_to_json(expense_tracker:ExpenseTrackerSystem) -> None:
     if not expense_tracker.expenses:
         return
     
@@ -20,7 +20,7 @@ def save_to_json(expense_tracker):
         }
     save_data(expense_data)
 
-def load_from_json():
+def load_from_json() -> ExpenseTrackerSystem:
     expense_tracker_raw = load_data()
     expense_tracker_system = ExpenseTrackerSystem()
     if not expense_tracker_raw:
@@ -38,7 +38,7 @@ def load_from_json():
         expense_tracker_system.add_one_expense(object_expense)
     return expense_tracker_system
 
-def choose_menu(menu_list):
+def choose_menu(menu_list:list) -> None:
     while True:
         try:
             choice = int(input(": "))
@@ -48,7 +48,7 @@ def choose_menu(menu_list):
         except ValueError:
             print("INVALID MENU")
 
-def main():
+def main() -> None:
     expense_tracker = load_from_json()
     running = True
     menu_list = [
